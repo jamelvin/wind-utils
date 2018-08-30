@@ -155,6 +155,11 @@ public:
         db_modified_ = true;
     }
 
+    //! STK Mesh I/O handler
+    // FIXME: JAM - moved this here to use in HITFields
+    //        need a better way to manage it
+    stk::io::StkMeshIoBroker stkio_;
+    std::unordered_set<std::string> output_fields_;
 private:
     CFDMesh() = delete;
     CFDMesh(const CFDMesh&) = delete;
@@ -171,10 +176,10 @@ private:
     std::string input_db_{""};
 
     //! STK Mesh I/O handler
-    stk::io::StkMeshIoBroker stkio_;
+    //stk::io::StkMeshIoBroker stkio_;
 
     //! List of fields registered for output
-    std::unordered_set<std::string> output_fields_;
+    //std::unordered_set<std::string> output_fields_;
 
     //! Flag indicating whether a results database must be written
     bool db_modified_{false};

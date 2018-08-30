@@ -5,6 +5,10 @@ add_executable(nalu_preprocess
   SamplingPlanes.cpp
   ABLFields.cpp
   ChannelFields.cpp
+  JHTDB/soapC.c
+  JHTDB/soapClient.c
+  JHTDB/stdsoap2.c
+  JHTDB/turblib.c
   HITFields.cpp
   RotateMesh.cpp
   BdyIOPlanes.cpp
@@ -36,6 +40,6 @@ install(TARGETS nalu_preprocess
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib)
 
-file(GLOB PREPROCESSING_HEADERS *.h)
+file(GLOB PREPROCESSING_HEADERS *.h */*.h)
 install(FILES ${PREPROCESSING_HEADERS}
   DESTINATION include)

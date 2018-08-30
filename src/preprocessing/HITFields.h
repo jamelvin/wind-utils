@@ -17,6 +17,11 @@
 #define HITFIELDS_H
 
 #include "PreProcessingTask.h"
+#include <stdio.h>
+#include <math.h>
+#include "JHTDB/turblib.h"
+
+#define PI 3.141592653589793
 
 namespace sierra {
 namespace nalu {
@@ -42,7 +47,7 @@ private:
     HITFields() = delete;
     HITFields(const HITFields&) = delete;
 
-    size_t get_index(size_t);
+    size_t fh_;
 
     //! Parse the YAML file and initialize parameters
     void load(const YAML::Node&);
@@ -51,9 +56,32 @@ private:
 
     std::vector<double> mean_vel_{0.0, 0.0, 0.0};
 
-    std::vector<int> hit_mesh_dims_{0, 0, 0};
+    double ti_;
+    double urms_;
 
-    std::string hit_filename_;
+    std::vector<double> physLen_{0.0, 0.0, 0.0};
+    std::vector<int> numPts_{0, 0, 0};
+
+    double minx_;
+    double t0_;
+    double tf_;
+    double filtWidth_;
+    int nx_;
+    int ny_;
+    int nz_;
+    double uSweep_;
+    double Lx_;
+    double Ly_;
+    double Lz_;
+    int numSteps_;
+    double dtPhysical_;
+
+    std::string authtoken_;
+    std::string dataset_;
+    std::string field_;
+
+    void init_JHTDB();
+    void close_JHTDB();
 
 };
 
